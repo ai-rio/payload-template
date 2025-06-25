@@ -27,7 +27,11 @@ export default async function HomePage() {
             width={65}
           />
         </picture>
-        {!user && <h1>Welcome to your new project.</h1>}
+        {!user && (
+          <div className="bg-green-500 text-white p-4 text-2xl font-bold">
+            Tailwind is finally working 🎉
+          </div>
+        )}
         {user && <h1>Welcome back, {user.email}</h1>}
         <div className="links">
           <a

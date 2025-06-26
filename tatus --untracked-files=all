@@ -1,0 +1,7 @@
+[33mcommit 8626618480f5f576bdd64be48e9cefec4ad7133c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m)[m
+Author: Carlos Nunes <carlos@ai.rio.br>
+Date:   Wed Jun 25 18:32:48 2025 -0300
+
+    feat: add landing page html with interactive demo and animations
+
+docs/html/landing.html

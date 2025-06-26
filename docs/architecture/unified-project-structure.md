@@ -1,154 +1,177 @@
-# Unified Project Structure
+# **Unified Project Structure**
 
-## Overview
+\
 
-# This document defines the standard project structure and organization for the Creator's Deal Hub. It outlines the directory layout, module separation, and naming conventions to ensure consistency, improve navigability for both human and AI development agents, and facilitate scalable fullstack development within a monorepo setup.
+## **Overview**
 
-### Change Log
+This document defines the standard project structure and organization for the Creator's Deal Hub. It outlines the directory layout, module separation, and naming conventions to ensure consistency, improve navigability for both human and AI development agents, and facilitate scalable fullstack development within a monorepo setup. With the adoption of Shadcn UI, the src/components/ui/ directory will specifically house Shadcn components.
 
-# | Date       | Version | Description                                       | Author  |
-| ---------- | ------- | ------------------------------------------------- | ------- |
-| 2025-06-25 | 0.1     | Initial draft based on provided project structure | Winston |
+### **Change Log**
 
-## Project Root Directory Structure
+\
 
-The project adheres to a monorepo structure, housing both the Next.js frontend and the Payload CMS backend, along with shared configurations and documentation.Plaintext    cdh/
-    ├── Dockerfile                  # Docker configuration for environment setup
-    ├── README.md                   # Main project README
-    ├── bun.lock                    # Bun package manager lock file
-    ├── components.json             # Configuration for shared UI components (potentially Shadcn/UI)
-    ├── docker-compose.yml          # Docker Compose for local development environment
-    ├── docs/                       # Project documentation
-    │   ├── architecture/           # Architectural documentation
-    │   │   ├── backend-architecture.md
-    │   │   ├── coding-standards.md
-    │   │   ├── components.md
-    │   │   ├── core-workflows.md
-    │   │   ├── database-schema.md
-    │   │   ├── deployment-guide.md
-    │   │   ├── error-handling-strategy.md
-    │   │   ├── external-apis.md
-    │   │   ├── frontend-architecture.md
-    │   │   ├── fullstack-architecture.md
-    │   │   ├── index.md
-    │   │   ├── performance-guidelines.md
-    │   │   ├── rest-api-spec.md
-    │   │   ├── security-considerations.md
-    │   │   ├── tech-stack.md
-    │   │   ├── testing-strategy.md
-    │   │   ├── troubleshooting-guide.md
-    │   │   └── ui-ux-spec.md
-    │   ├── html/                   # Original static HTML files for reference
-    │   │   ├── 404_Signal_Lost.html
-    │   │   ├── Terms_of_Service.html
-    │   │   ├── The_living_data_contract.html
-    │   │   ├── about.html
-    │   │   ├── blog_post_template.html
-    │   │   ├── carreers.html
-    │   │   ├── contact.html
-    │   │   ├── home.html
-    │   │   └── pricing.html
-    │   ├── prd/                    # Product Requirements Documents (sharded)
-    │   │   └── prd.md
-    │   ├── prompts/                # AI prompt templates
-    │   │   └── creative_design.md
-    │   └── stories/                # User stories (sharded)
-    │       └── story1.1.md
-    ├── eslint.config.mjs           # ESLint configuration
-    ├── next-env.d.ts               # Next.js environment type definitions
-    ├── next.config.mjs             # Next.js configuration
-    ├── package.json                # Project package manifest
-    ├── postcss.config.cjs          # PostCSS configuration (for Tailwind CSS)
-    ├── src/                        # Application source code
-    │   ├── app/                    # Next.js App Router structure
-    │   │   ├── (frontend)/         # Route group for public-facing frontend
-    │   │   │   ├── components/     # Reusable UI components specific to frontend application
-    │   │   │   │   └── Header.tsx
-    │   │   │   ├── layout.tsx      # Root layout for frontend pages
-    │   │   │   ├── page.tsx        # Homepage (root) component
-    │   │   │   └── styles.css      # Global CSS styles for frontend
-    │   │   ├── (payload)/          # Route group for Payload CMS admin and API
-    │   │   │   ├── admin/          # Payload admin panel routes
-    │   │   │   │   ├── [[...segments]]/
-    │   │   │   │   │   ├── not-found.tsx
-    │   │   │   │   │   └── page.tsx
-    │   │   │   │   └── importMap.js
-    │   │   │   ├── api/            # Payload API routes
-    │   │   │   │   ├── [...slug]/
-    │   │   │   │   │   └── route.ts
-    │   │   │   │   ├── graphql/
-    │   │   │   │   │   └── route.ts
-    │   │   │   │   └── graphql-playground/
-    │   │   │   │       └── route.ts
-    │   │   │   ├── custom.scss
-    │   │   │   └── layout.tsx
-    │   │   └── my-route/           # Example custom route
-    │   │       └── route.ts
-    │   ├── collections/            # Payload CMS collections (data models)
-    │   │   ├── Media.ts
-    │   │   └── Users.ts
-    │   ├── components/             # Shared UI components (e.g., Shadcn/UI primitives)
-    │   │   └── ui/
-    │   │       ├── button.tsx
-    │   │       └── card.tsx
-    │   ├── lib/                    # Utility functions and libraries
-    │   │   └── utils.ts
-    │   ├── payload-types.ts        # Payload CMS generated TypeScript types
-    │   └── payload.config.ts       # Payload CMS configuration
-    ├── tailwind.config.js          # Tailwind CSS configuration
-    └── tsconfig.json               # TypeScript configuration
-====================================================================================================================================================================================================================================================================================================================================================================
 
-## Key Directories and Their Purpose
+|            |         |                                                                            |         |
+| ---------- | ------- | -------------------------------------------------------------------------- | ------- |
+| Date       | Version | Description                                                                | Author  |
+| 2025-06-25 | 0.1     | Initial draft based on provided project structure                          | Winston |
+| 2025-06-26 | 0.2     | Updated to reflect Shadcn UI component location within src/components/ui/. | Winston |
 
-# - `./`: The project root, containing global configurations, build scripts, and documentation.
 
-- `./docs/`: Central repository for all project documentation, including architectural diagrams, PRDs, and user stories.
+## **Project Root Directory Structure**
 
-  - `./docs/architecture/`: Contains detailed architectural documentation.
+The project adheres to a monorepo structure, housing both the Next.js frontend and the Payload CMS backend, along with shared configurations and documentation.
 
-  - `./docs/html/`: Stores the original static HTML files that are being converted.
+Plaintext
 
-  - `./docs/prd/`: Contains the Product Requirements Document.
+\
 
-  - `./docs/stories/`: Contains individual user stories.
 
-- `./src/`: Contains all application source code.
+cdh/\
+├── Dockerfile                  # Docker configuration for environment setup\
+├── README.md                   # Main project README\
+├── bun.lock                    # Bun package manager lock file\
+├── components.json             # Configuration for shared UI components (potentially Shadcn/UI)\
+├── docker-compose.yml          # Docker Compose for local development environment\
+├── docs/                       # Project documentation\
+│   ├── architecture/           # Architectural documentation\
+│   │   ├── backend-architecture.md\
+│   │   ├── coding-standards.md\
+│   │   ├── components.md\
+│   │   ├── core-workflows.md\
+│   │   ├── data-models.md\
+│   │   ├── database-schema.md\
+│   │   ├── deployment-guide.md\
+│   │   ├── error-handling-strategy.md\
+│   │   ├── external-apis.md\
+│   │   ├── frontend-architecture.md\
+│   │   ├── fullstack-architecture.md\
+│   │   ├── index.md\
+│   │   ├── performance-guidelines.md\
+│   │   ├── rest-api-spec.md\
+│   │   ├── security-considerations.md\
+│   │   ├── tech-stack.md\
+│   │   ├── testing-strategy.md\
+│   │   ├── troubleshooting-guide.md\
+│   │   ├── ui-ux-spec.md\
+│   │   └── unified-project-structure.md\
+│   ├── html/                   # Original static HTML files for reference\
+│   │   ├── 404\_Signal\_Lost.html\
+│   │   ├── Terms\_of\_Service.html\
+│   │   ├── The\_living\_data\_contract.html\
+│   │   ├── about.html\
+│   │   ├── blog\_post\_template.html\
+│   │   ├── carreers.html\
+│   │   ├── contact.html\
+│   │   ├── home.html\
+│   │   ├── landing.html        # New: Landing page HTML\
+│   │   └── pricing.html\
+│   ├── prd/                    # Product Requirements Documents (sharded)\
+│   │   └── prd.md\
+│   ├── prompts/                # AI prompt templates\
+│   │   └── creative\_design.md\
+│   └── stories/                # User stories (sharded)\
+│       └── story1.1.md\
+├── eslint.config.mjs           # ESLint configuration\
+├── next-env.d.ts               # Next.js environment type definitions\
+├── next.config.mjs             # Next.js configuration\
+├── package.json                # Project package manifest\
+├── postcss.config.cjs          # PostCSS configuration (for Tailwind CSS)\
+├── src/                        # Application source code\
+│   ├── app/                    # Next.js App Router structure\
+│   │   ├── (frontend)/         # Route group for public-facing frontend\
+│   │   │   ├── components/     # Reusable UI components specific to frontend application\
+│   │   │   │   └── Header.tsx\
+│   │   │   ├── layout.tsx      # Root layout for frontend pages\
+│   │   │   ├── page.tsx        # Homepage (root) component\
+│   │   │   └── styles.css      # Global CSS styles for frontend\
+│   │   ├── (payload)/          # Route group for Payload CMS admin and API\
+│   │   │   ├── admin/          # Payload admin panel routes\
+│   │   │   │   ├── \[\[...segments]]\
+│   │   │   │   │   ├── not-found.tsx\
+│   │   │   │   │   └── page.tsx\
+│   │   │   │   └── importMap.js\
+│   │   │   ├── api/            # Payload API routes\
+│   │   │   │   ├── \[...slug]\
+│   │   │   │   │   └── route.ts\
+│   │   │   │   ├── graphql/\
+│   │   │   │   │   └── route.ts\
+│   │   │   │   └── graphql-playground/\
+│   │   │   │       └── route.ts\
+│   │   │   ├── custom.scss\
+│   │   │   └── layout.tsx\
+│   │   └── my-route/           # Example custom route\
+│   │       └── route.ts\
+│   ├── collections/            # Payload CMS collections (data models)\
+│   │   ├── Media.ts\
+│   │   └── Users.ts\
+│   ├── components/             # Shared UI components (e.g., Shadcn/UI primitives)\
+│   │   └── ui/                 # Shadcn UI components (copied into project)\
+│   │       ├── button.tsx\
+│   │       └── card.tsx\
+│   ├── lib/                    # Utility functions and libraries\
+│   │   └── utils.ts\
+│   ├── payload-types.ts        # Payload CMS generated TypeScript types\
+│   └── payload.config.ts\
+├── tailwind.config.js          # Tailwind CSS configuration\
+└── tsconfig.json               # TypeScript configuration
 
-  - `./src/app/`: Next.js App Router structure.
 
-    - `./src/app/(frontend)/`: Houses the public-facing Next.js frontend application. This is where components and pages for the main website reside.
+## **Key Directories and Their Purpose**
 
-    - `./src/app/(payload)/`: Contains the Payload CMS admin panel and its API routes, logically separated from the frontend.
+- ./: The project root, containing global configurations, build scripts, and documentation.
 
-  - `./src/collections/`: Defines Payload CMS data collections (similar to database models).
+- ./docs/: Central repository for all project documentation, including architectural diagrams, PRDs, and user stories.
 
-  - `./src/components/`: Stores shared UI components that can be used across different parts of the application (e.g., generic UI primitives).
+* ./docs/architecture/: Contains detailed architectural documentation.
 
-    - `./src/components/ui/`: Specifically for UI primitives (e.g., buttons, cards).
+* ./docs/html/: Stores the original static HTML files that are being converted.
 
-  - `./src/lib/`: Common utility functions.
+* ./docs/prd/: Contains the Product Requirements Document.
 
-- `./public/`: (Implicit in Next.js structure) For static assets (images, fonts, etc.).
+* ./docs/stories/: Contains individual user stories.
 
-## Component Organization
+- ./src/: Contains all application source code.
 
-# - **Application-Specific Components**: Components used only within the frontend application (e.g., `Header.tsx` for the main site layout) are located under `src/app/(frontend)/components/`.
+* ./src/app/: Next.js App Router structure.
 
-- **Shared UI Primitives**: Reusable, generic UI components (e.g., `button.tsx`, `card.tsx`) that can be shared across the entire project (frontend, admin panel) are placed under `src/components/ui/`.
+- ./src/app/(frontend)/: Houses the public-facing Next.js frontend application. This is where components and pages for the main website reside.
 
-## Naming Conventions
+- ./src/app/(payload)/: Contains the Payload CMS admin panel and its API routes, logically separated from the frontend.
 
-# - **Folders**: Generally `kebab-case`.
+* ./src/collections/: Defines Payload CMS data collections (similar to database models).
 
-- **Files**: Follows `PascalCase` for React components and TypeScript types/interfaces, and `camelCase` for utility functions (as detailed in `docs/architecture/coding-standards.md`).
+* ./src/components/: Stores shared UI components.
 
-- **Next.js App Router**: Adheres to Next.js conventions for `app` directory, route groups `()`, and special files (`layout.tsx`, `page.tsx`, `route.ts`).
+- ./src/components/ui/: **Specifically designated for Shadcn UI components.** When npx shadcn-ui\@latest add \<component> is run, the component's code is copied here, allowing for direct customization.
 
-## Related Resources
+* ./src/lib/: Common utility functions.
 
-# - [Coding Standards](https://www.google.com/search?q=./coding-standards.md)
+- ./public/: (Implicit in Next.js structure) For static assets (images, fonts, etc.).
+
+
+## **Component Organization**
+
+- **Application-Specific Components**: Components used only within the frontend application (e.g., Header.tsx for the main site layout, HeroSection.tsx) are located under src/app/(frontend)/components/.
+
+- **Shadcn UI Components**: Reusable, generic UI components sourced from Shadcn UI (e.g., button.tsx, card.tsx, dialog.tsx) are placed under src/components/ui/. These are designed to be highly customizable via Tailwind CSS.
+
+- **Shared UI Primitives (Pre-Shadcn)**: If any pre-existing generic UI primitives were in src/components/ui/ before Shadcn adoption, they should either be replaced by Shadcn equivalents or explicitly designated as custom primitives within that folder.
+
+## **Naming Conventions**
+
+- **Folders**: Generally kebab-case.
+
+- **Files**: Follows PascalCase for React components and TypeScript types/interfaces, and camelCase for utility functions (as detailed in docs/architecture/coding-standards.md).
+
+- **Next.js App Router**: Adheres to Next.js conventions for app directory, route groups (), and special files (layout.tsx, page.tsx, route.ts).
+
+## **Related Resources**
+
+- [Coding Standards](https://www.google.com/search?q=./coding-standards.md)
 
 - [Technology Stack](https://www.google.com/search?q=./tech-stack.md)
 
 - [Fullstack Architecture](https://www.google.com/search?q=./fullstack-architecture.md) (to be created, will link to this structure)
+
+- [UI Components](https://www.google.com/search?q=./components.md)

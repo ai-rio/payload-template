@@ -18,7 +18,7 @@ This documentation is logically organized into the following key categories:
 
 ## Quick Links
 
-- [Product Requirements Document (PRD)](https://www.google.com/search?q=./prd.md)
+- [Product Requirements Document (PRD)](https://www.google.com/search?q=./prd/prd.md)
 
 - [Architecture Index](https://www.google.com/search?q=./architecture/index.md)
 
@@ -27,7 +27,7 @@ This documentation is logically organized into the following key categories:
 
 ## Reading Order Recommendations
 
-- **For Product Managers/Stakeholders**: Begin with the [Product Requirements Document (PRD)](https://www.google.com/search?q=./prd.md) to understand the project's goals, problem statement, and core requirements.
+- **For Product Managers/Stakeholders**: Begin with the [Product Requirements Document (PRD)](https://www.google.com/search?q=./prd/prd.md) to understand the project's goals, problem statement, and core requirements.
 
 - **For Architects/System Designers**: Start with the [Architecture Index](https://www.google.com/search?q=./architecture/index.md) to grasp the overall system design before delving into specific architectural documents.
 

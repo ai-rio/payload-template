@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import CommandDeck from './CommandDeck';
+import CommandDeck from './CommandDeck.tsx';
 
 describe('CommandDeck', () => {
   const mockOnClose = jest.fn();
